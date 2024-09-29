@@ -7,6 +7,73 @@
 	},
 	"item": [
 		{
+			"name": "Create_OAuth_Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    var jsonResponse = pm.response.json();\r",
+							"    pm.collectionVariables.set(\"token\", jsonResponse.access_token);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "fb0e45e7c63852103a642e78381a32e7",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "BxSirL(Cp2",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{protocol}}://{{hostName}}/oauth_token.do",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{hostName}}"
+					],
+					"path": [
+						"oauth_token.do"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Create_A_New_Record",
 			"event": [
 				{
@@ -27,16 +94,11 @@
 			],
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "password",
-							"value": "{{password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{username}}",
+							"key": "token",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -95,16 +157,11 @@
 			],
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "password",
-							"value": "{{password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{username}}",
+							"key": "token",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -164,16 +221,11 @@
 			],
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "password",
-							"value": "{{password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{username}}",
+							"key": "token",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -233,16 +285,11 @@
 			],
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "password",
-							"value": "{{password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{username}}",
+							"key": "token",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -292,16 +339,11 @@
 			],
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "password",
-							"value": "{{password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{username}}",
+							"key": "token",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -369,6 +411,10 @@
 		},
 		{
 			"key": "sysId",
+			"value": ""
+		},
+		{
+			"key": "token",
 			"value": ""
 		}
 	]
