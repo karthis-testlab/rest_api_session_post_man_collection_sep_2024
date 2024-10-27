@@ -50,7 +50,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"short_description\": \"RESTAPISEP2024\"\r\n}",
+					"raw": "{\r\n    \"description\": \"Call Post MEthod with request payload\",\r\n    \"short_description\": \"RESTAPISEP2024\",\r\n    \"state\": \"1\",\r\n    \"urgency\": \"1\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -145,6 +145,11 @@
 							"var jsonArray = pm.response.json();\r",
 							"console.log(jsonArray.result.length);\r",
 							"\r",
+							"var inquiry = jsonArray.result.filter(function (incident) {\r",
+							"    return incident.category == 'inquiry'\r",
+							"});\r",
+							"console.log(inquiry.map(incident => incident.sys_id));\r",
+							"\r",
 							"for(var i = 0; i < jsonArray.result.length; i++) {\r",
 							"    console.log(jsonArray.result[i].sys_id);\r",
 							"}\r",
@@ -152,6 +157,16 @@
 							"pm.test(\"Response time is less than 500ms\", function () {\r",
 							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
 							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -177,7 +192,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{protocol}}://{{hostName}}/{{basePath}}/:tableName?sysparm_limit=5",
+					"raw": "{{protocol}}://{{hostName}}/{{basePath}}/:tableName",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{hostName}}"
@@ -189,7 +204,8 @@
 					"query": [
 						{
 							"key": "sysparm_limit",
-							"value": "5"
+							"value": "5",
+							"disabled": true
 						}
 					],
 					"variable": [
@@ -254,7 +270,7 @@
 						},
 						{
 							"key": "sysId",
-							"value": "46b9490da9fe1981003c938dab89bda3"
+							"value": "46b66a40a9fe198101f243dfbc79033d"
 						}
 					]
 				}

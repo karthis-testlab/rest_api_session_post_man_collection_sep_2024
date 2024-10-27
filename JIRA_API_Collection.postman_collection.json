@@ -1,0 +1,270 @@
+{
+	"info": {
+		"_postman_id": "31706b99-0b8b-4af0-b812-a366afb43948",
+		"name": "JIRA_API_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28447185"
+	},
+	"item": [
+		{
+			"name": "Get_All_JIRA_Projects",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{api_token}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "karthike.selene@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://karthikeselene.atlassian.net/rest/api/3/project",
+					"protocol": "https",
+					"host": [
+						"karthikeselene",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"3",
+						"project"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Project_Status",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{api_token}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "karthike.selene@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://karthikeselene.atlassian.net/rest/api/3/project/10003/statuses",
+					"protocol": "https",
+					"host": [
+						"karthikeselene",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"3",
+						"project",
+						"10003",
+						"statuses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create_Issue",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{api_token}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "karthike.selene@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"summary\": \"Main order flow broken - 051020251401\",\r\n        \"issuetype\": {\r\n            \"id\": \"10012\"\r\n        },\r\n        \"project\": {\r\n            \"id\": \"10003\"\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://karthikeselene.atlassian.net/rest/api/3/issue",
+					"protocol": "https",
+					"host": [
+						"karthikeselene",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"3",
+						"issue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Issue_Type_ProjectId",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{api_token}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "karthike.selene@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://karthikeselene.atlassian.net/rest/api/3/issuetype/project?projectId=10003",
+					"protocol": "https",
+					"host": [
+						"karthikeselene",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"3",
+						"issuetype",
+						"project"
+					],
+					"query": [
+						{
+							"key": "projectId",
+							"value": "10003"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Attachment_File_In_Issue",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{api_token}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "karthike.selene@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Atlassian-Token",
+						"value": "no-check",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Karthikeyan_Rajendra/Downloads/Week5Day2.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://karthikeselene.atlassian.net/rest/api/3/issue/10024/attachments",
+					"protocol": "https",
+					"host": [
+						"karthikeselene",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"3",
+						"issue",
+						"10024",
+						"attachments"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_token",
+			"value": ""
+		}
+	]
+}
